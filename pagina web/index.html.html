@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#09070d">
+<meta name="description" content="NOVA MIX: tecnología, accesorios y productos para todos los días. Envíos en Rosario y alrededores.">
+<title>NOVA MIX | Tu compra, más fácil</title>
+<style>
+:root{--bg:#09070d;--card:#15101c;--purple:#a020f0;--light:#ce8cff;--white:#fff;--gray:#bdb5c7;--border:#33213f}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+.container{width:min(1160px,92%);margin:auto}
+.topbar{text-align:center;padding:9px;background:linear-gradient(90deg,#6310a6,#a020f0,#6310a6);font-size:12px;font-weight:bold;letter-spacing:1px}
+header{position:sticky;top:0;z-index:10;background:rgba(9,7,13,.96);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{border:1px solid #59366f;border-radius:10px;width:52px;height:52px;display:grid;place-items:center;overflow:hidden;box-shadow:0 0 15px #a020f033;background:#fff}.logo-icon img{width:100%;height:100%;object-fit:contain;padding:2px}
+.logo-name{font-size:25px;font-weight:900;line-height:1}
+.logo-name span{color:var(--light);font-style:italic}
+.logo small{display:block;font-size:9px;letter-spacing:1.5px;color:var(--gray);margin-top:5px}
+nav{display:flex;align-items:center;gap:22px;font-size:14px}
+nav a:hover{color:var(--light)}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;background:var(--purple);color:white;padding:12px 17px;border-radius:9px;border:1px solid var(--purple);font-weight:bold;cursor:pointer;transition:.2s}
+.btn:hover{background:#8116cc;transform:translateY(-2px)}
+.btn-outline{background:transparent;border-color:#59366f}
+.hero{padding:75px 0 45px;background:radial-gradient(ellipse at 80% 30%,#7616b52c,transparent 45%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.tag{display:inline-block;padding:7px 12px;border-radius:30px;border:1px solid #59366f;background:#a020f018;color:var(--light);font-size:12px;font-weight:bold;margin-bottom:20px}
+h1{font-size:clamp(40px,5.5vw,68px);line-height:1.06;letter-spacing:-2px}
+h1 span{color:var(--light)}
+.hero p{color:var(--gray);margin:22px 0 26px;max-width:490px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-art{min-height:330px;border:0;border-radius:22px;background:transparent;display:grid;place-items:center;position:relative;overflow:hidden}
+/* Se quitó el círculo decorativo grande de la portada */
+.hero-emoji{font-size:120px;z-index:1;filter:drop-shadow(0 15px 20px #0008)}
+.floating{position:absolute;background:#21132d;border:1px solid #59366f;border-radius:10px;padding:10px 13px;font-size:12px;z-index:2}
+.floating strong{display:block;color:var(--light)}
+.floating.one{top:18px;left:18px}.floating.two{bottom:18px;right:18px}
+.benefits{margin-top:38px;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:13px;background:var(--card);overflow:hidden}
+.benefit{padding:18px;display:flex;align-items:center;justify-content:center;gap:11px}
+.benefit+.benefit{border-left:1px solid var(--border)}
+.benefit-icon{font-size:25px}.benefit strong{display:block;font-size:12px}.benefit small{font-size:11px;color:var(--gray)}
+section.catalog{padding:70px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}
+h2{font-size:clamp(27px,4vw,39px);line-height:1.2}
+.section-head p{color:var(--gray);font-size:14px;margin-top:8px}
+.search{background:var(--card);border:1px solid var(--border);padding:12px;border-radius:9px;color:white;outline:none;width:245px}
+.search:focus{border-color:var(--purple)}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:25px}
+.filter{background:var(--card);color:var(--gray);border:1px solid var(--border);padding:8px 14px;border-radius:30px;cursor:pointer;font-size:12px}
+.filter.active,.filter:hover{background:var(--purple);border-color:var(--purple);color:white}
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.product{background:linear-gradient(145deg,#191321,#100d15);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.2s;min-width:0}
+.product:hover{transform:translateY(-4px);border-color:#8540ad}
+.product-image{height:290px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#100c16;padding:18px;cursor:zoom-in}
+.product-image img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;min-width:0;min-height:0;object-fit:contain!important;object-position:center center;padding:0;z-index:1;transition:filter .2s}
+.product-image:hover img{filter:brightness(1.04)}
+.product-image .emoji{position:absolute;opacity:.14;z-index:0}
+.product-image:has(img:not([src=""])) .emoji{opacity:.08}
+.product-image:after{content:none;display:none}
+.product-image:after{content:none;display:none}
+.emoji{font-size:80px;z-index:1;filter:drop-shadow(0 10px 12px #0007)}
+.product-label{position:absolute;left:11px;top:11px;z-index:2;background:var(--purple);padding:4px 8px;border-radius:5px;font-size:10px;font-weight:bold}
+.product-info{padding:17px;display:flex;flex-direction:column}.product-info .product-btn{margin-top:auto}.product-tools{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.favorite{border:1px solid #59366f;background:#21132d;color:#fff;border-radius:8px;padding:7px 10px;cursor:pointer;font-size:12px}.favorite.active{background:#581b3d;border-color:#ff78b7;color:#ffb8d8}.sort{background:var(--card);border:1px solid var(--border);color:#fff;border-radius:9px;padding:12px;max-width:230px}.catalog-meta{color:var(--gray);font-size:12px;margin:0 0 16px}.lightbox{display:none;position:fixed;inset:0;background:#050308f2;z-index:100;align-items:center;justify-content:center;padding:20px}.lightbox.open{display:flex}.lightbox img{max-width:min(92vw,900px);max-height:82vh;object-fit:contain;background:#17101f;border:1px solid #59366f;border-radius:14px;padding:10px}.lightbox-close{position:absolute;right:20px;top:18px;background:#291638;border:1px solid #754096;color:#fff;border-radius:50%;width:44px;height:44px;font-size:25px;cursor:pointer}.lightbox-caption{position:absolute;bottom:18px;left:12px;right:12px;text-align:center;color:#e8d8f4;font-size:13px}
+.product-info h3{font-size:17px;line-height:1.35;margin-bottom:8px}
+.desc{font-size:13px;color:var(--gray);min-height:62px;margin-bottom:13px}
+.features{font-size:12px;color:#ded5e8;padding-left:17px;margin-bottom:16px}
+.features li{margin:3px 0}
+.price-hidden{display:inline-block;font-size:20px;font-weight:900;color:#fff;border:1px solid #754096;background:linear-gradient(90deg,#6c18a3,#a020f0);border-radius:8px;padding:7px 12px;margin-bottom:13px;box-shadow:0 5px 16px #a020f022}
+.product-info .btn{width:100%;font-size:13px;padding:11px}
+.note{color:#a99ab7;font-size:11px;margin-top:10px}
+.empty{display:none;color:var(--gray);padding:35px;text-align:center;grid-column:1/-1}
+.trust{padding:45px 0;background:linear-gradient(100deg,#2b1040,#170d21);border-top:1px solid #42215b;border-bottom:1px solid #42215b}
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;text-align:center}
+.trust-item span{font-size:32px}.trust-item h3{font-size:15px;margin:8px 0 4px}.trust-item p{color:#d0c5da;font-size:12px}
+.about{padding:76px 0;background:radial-gradient(ellipse at 15% 50%,#7c1bb51c,transparent 45%),var(--bg)}
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:35px;align-items:stretch}
+.about-card{border:1px solid #59366f;border-radius:20px;background:linear-gradient(145deg,#24132f,#120d18);padding:30px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:280px;position:relative;overflow:hidden}
+.about-avatar{width:112px;height:112px;border-radius:50%;display:block;object-fit:cover;object-position:center 25%;background:linear-gradient(145deg,#a020f0,#45115f);border:2px solid #ce8cff;box-shadow:0 0 30px #a020f033;margin-bottom:18px}
+.about-card h3{font-size:23px;line-height:1.25}.about-card p{color:var(--light);font-size:12px;letter-spacing:1px;margin-top:8px}
+.about-copy{padding:10px 0}.about-copy h2{margin-bottom:17px}.about-copy>p{color:var(--gray);margin:12px 0}.about-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}.about-point{padding:13px;border:1px solid var(--border);border-radius:10px;background:var(--card)}.about-point strong{display:block;font-size:13px;margin-bottom:4px}.about-point span{font-size:12px;color:var(--gray)}.about-signoff{font-weight:bold;color:var(--light);font-size:17px;margin-top:18px}
+.contact{padding:75px 0;text-align:center}
+.contact p{color:var(--gray);max-width:540px;margin:15px auto 25px}
+.contact-box{max-width:720px;margin:auto;padding:38px 22px;border-radius:20px;border:1px solid var(--border);background:radial-gradient(ellipse at top,#a020f026,transparent 70%),var(--card)}
+footer{border-top:1px solid var(--border);padding:28px 0;color:var(--gray);font-size:12px}
+.footer-content{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-brand{color:white;font-size:20px;font-weight:900}.footer-brand span{color:var(--light);font-style:italic}
+.whatsapp{position:fixed;right:20px;bottom:20px;z-index:20;width:55px;height:55px;border-radius:50%;background:#25d366;color:white;display:grid;place-items:center;font-size:27px;box-shadow:0 5px 20px #0009}
+@media(max-width:850px){nav{gap:12px}nav a{font-size:12px}.hero-grid{grid-template-columns:1fr}.hero-art{min-height:280px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.product-image{height:230px}}
+
+/* Portada de marca y escaparate visual */
+.hero-showcase{display:block;min-height:0;padding:18px;background:linear-gradient(145deg,#21132d,#0f0a16 72%);isolation:isolate}
+.showcase-glow{position:absolute;inset:15% 10%;background:radial-gradient(ellipse,#9e35db30,transparent 68%);z-index:-1}
+.showcase-brand{display:flex;align-items:center;gap:18px;position:relative;z-index:2}
+.showcase-mark{width:104px;height:104px;flex:0 0 104px;display:block;object-fit:contain;border-radius:12px;background:#fff;padding:4px;box-shadow:0 8px 24px #a020f044}
+.showcase-brand strong{display:block;font-size:27px;letter-spacing:1.5px}.showcase-brand small{display:block;font-size:10px;letter-spacing:1.2px;color:#c8b4d7;margin-top:6px}
+.showcase-products{height:220px;position:relative;margin-top:2px}
+.showcase-product{position:absolute;border:0;background:transparent;border-radius:17px;overflow:hidden;box-shadow:none;display:flex;align-items:center;justify-content:center}
+.showcase-product img{width:100%;height:100%;object-fit:contain;padding:9px;position:relative;z-index:1}
+.showcase-main{width:58%;height:205px;left:17%;top:20px;transform:rotate(-3deg)}.showcase-main span{position:absolute;bottom:0;left:0;right:0;padding:10px 7px;background:#0b0713d9;color:#f1e6fa;text-align:center;font-size:11px;z-index:2}
+.showcase-small{width:29%;height:122px}.showcase-small.top{right:0;top:0;transform:rotate(5deg)}.showcase-small.bottom{left:0;bottom:0;transform:rotate(-5deg)}
+.showcase-foot{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;color:#d4c2e0;font-size:10px;letter-spacing:.3px;margin-top:0}.jere-photo{width:42px;height:42px;flex:0 0 42px;object-fit:cover;object-position:center 28%;border-radius:50%;border:2px solid #a020f0;box-shadow:0 0 15px #a020f044}.showcase-dot{width:4px;height:4px;border-radius:50%;background:#ce8cff}
+.product-btn{margin-top:8px}.product-info .add-cart{min-height:41px}.cart-overlay{overscroll-behavior:contain}.cart-panel{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+@media(max-width:560px){.hero-showcase{min-height:0;padding:13px}.showcase-products{height:185px}.showcase-main{height:165px}.showcase-small{height:100px}.showcase-mark{width:78px;height:78px;flex-basis:78px}.showcase-brand{gap:12px}.showcase-brand strong{font-size:21px}.showcase-brand small{font-size:7px;letter-spacing:.7px}.showcase-foot{font-size:9px}}
+/* Carrito y preguntas frecuentes */
+.cart-trigger{position:relative;white-space:nowrap}.cart-count{display:inline-grid;place-items:center;min-width:23px;height:23px;border-radius:50%;background:#fff;color:#6c18a3;font-size:12px;margin-left:3px;padding:0 5px}
+.product-info .add-cart{width:100%;margin:0 0 9px;background:transparent;border-color:#754096;color:#f4e8ff;font-size:13px;padding:10px}
+.product-info .add-cart:hover{background:#321643}.cart-overlay{position:fixed;inset:0;background:#050308c9;z-index:200;display:none;align-items:stretch;justify-content:flex-end}.cart-overlay.open{display:flex}.cart-panel{width:min(480px,100%);height:100%;overflow:auto;background:#100b16;border-left:1px solid #59366f;padding:24px;box-shadow:-20px 0 60px #0008}.cart-head{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--border);padding-bottom:17px;margin-bottom:18px}.cart-head h2{font-size:26px}.cart-close{width:40px;height:40px;border-radius:50%;border:1px solid #59366f;background:#21132d;color:white;font-size:24px;cursor:pointer}.cart-empty{text-align:center;color:var(--gray);padding:35px 10px;border:1px dashed #59366f;border-radius:12px}.cart-item{display:grid;grid-template-columns:1fr auto;gap:10px;padding:15px 0;border-bottom:1px solid var(--border)}.cart-item h3{font-size:14px;line-height:1.35}.cart-item p{color:var(--light);font-weight:bold;font-size:13px;margin-top:4px}.cart-controls{display:flex;align-items:center;gap:8px;margin-top:10px}.qty-btn,.remove-item{border:1px solid #59366f;background:#21132d;color:white;border-radius:7px;min-width:30px;height:30px;cursor:pointer}.remove-item{padding:0 8px;font-size:11px;color:#ffb6c9}.cart-total{display:flex;justify-content:space-between;gap:12px;font-size:19px;font-weight:bold;margin:22px 0}.cart-help{color:var(--gray);font-size:12px;margin-bottom:15px}.cart-panel .btn{width:100%;margin-bottom:10px}.cart-panel .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.faq{padding:70px 0;background:linear-gradient(180deg,#0d0912,#160d20);border-top:1px solid var(--border)}.faq-intro{text-align:center;margin:0 auto 28px;max-width:650px}.faq-intro p{color:var(--gray);margin-top:10px}.faq-list{max-width:850px;margin:auto;display:grid;gap:10px}.faq-item{border:1px solid var(--border);border-radius:12px;background:var(--card);overflow:hidden}.faq-item summary{padding:17px 19px;cursor:pointer;font-weight:bold;list-style:none;display:flex;justify-content:space-between;gap:15px}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:after{content:'+';color:var(--light);font-size:21px;line-height:1}.faq-item[open] summary:after{content:'−'}.faq-answer{padding:0 19px 18px;color:var(--gray);font-size:14px}.faq-answer a{color:var(--light);text-decoration:underline}
+@media(max-width:560px){.cart-trigger{padding:9px 10px;font-size:12px}.product-info .add-cart{font-size:11px;padding:10px 5px}.cart-panel{padding:18px}.faq{padding:52px 0}.faq-item summary{padding:15px;font-size:14px}.faq-answer{padding:0 15px 15px}}
+
+@media(max-width:560px){.about{padding:52px 0}.about-grid{grid-template-columns:1fr;gap:22px}.about-card{min-height:230px;padding:24px}.about-points{grid-template-columns:1fr 1fr}.nav{min-height:68px}.logo-icon{width:39px;height:39px;font-size:19px}.logo-name{font-size:21px}.logo small{font-size:8px}nav{gap:8px}nav a:not(.nav-contact){display:none}.nav-contact{padding:10px 12px;font-size:12px}.hero{padding:48px 0 35px}h1{font-size:43px}.hero p{font-size:15px}.hero-art{min-height:245px}.hero-emoji{font-size:95px}.benefits{grid-template-columns:1fr}.benefit{justify-content:flex-start;padding:15px 22px}.benefit+.benefit{border-left:none;border-top:1px solid var(--border)}section.catalog{padding:52px 0}.section-head{align-items:stretch;flex-direction:column}.search{width:100%}.products{gap:10px}.product-image{height:210px;padding:10px}.product-image img{padding:0}.product-image:after{font-size:9px;right:6px;bottom:6px}.emoji{font-size:62px}.sort{width:100%;max-width:none}.product-info{padding:12px}.product-info h3{font-size:14px}.desc{font-size:12px;min-height:72px}.features{font-size:11px;padding-left:14px}.product-info .btn{font-size:11px;padding:10px 5px}.trust-grid{grid-template-columns:1fr;gap:30px}.footer-content{justify-content:center;text-align:center}}
+</style>
+</head>
+<body>
+<div class="topbar">✦ NOVA MIX · TU COMPRA, MÁS FÁCIL · ROSARIO Y ALREDEDORES ✦</div>
+<header>
+  <div class="container nav">
+    <a href="#inicio" class="logo" aria-label="NOVA MIX inicio">
+      <div class="logo-icon"><img src="nova.jpeg" alt="Logo NOVA MIX" onerror="this.style.display='none';this.parentElement.textContent='N'"></div>
+      <div><div class="logo-name">NOVA <span>MIX</span></div><small>JEREMÍAS RAMOS RIMOLDI</small></div>
+    </a>
+    <nav>
+      <a href="#inicio">Inicio</a><a href="#productos">Productos</a><a href="#beneficios">Beneficios</a><a href="#quienes-somos">Quiénes somos</a><a href="#preguntas-frecuentes">Preguntas frecuentes</a>
+      <a href="#contacto" class="btn nav-contact">Consultar</a><button class="btn cart-trigger" id="open-cart" type="button" aria-label="Abrir carrito">Carrito <span class="cart-count" id="cart-count">0</span></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="tag">✦ BIENVENIDO A NOVA MIX</span>
+        <h1>Encontrá eso<br>que <span>estabas</span><br>buscando.</h1>
+        <p>Tecnología, accesorios y esos detalles que te encantan. Elegí tu favorito, mirá el precio y escribinos por WhatsApp para hacer tu pedido. ¡Gracias por apoyar a NOVA MIX!</p>
+        <div class="actions"><a href="#productos" class="btn">Ver productos ↓</a><a href="#contacto" class="btn btn-outline">Hacer una consulta</a></div>
+      </div>
+      <div class="hero-art hero-showcase">
+        <div class="showcase-glow"></div>
+        <div class="showcase-brand"><img class="showcase-mark" src="nova.jpeg" alt="Logo NOVA MIX" onerror="this.style.display='none'"><span><strong>NOVA MIX</strong><small>TECNOLOGÍA · ACCESORIOS · LIFESTYLE</small></span></div>
+        <div class="showcase-products">
+          <div class="showcase-product showcase-main"><img src="JBLCharge5.jpeg" alt="Parlante JBL Charge 5" onerror="this.style.display='none'"><span>Sonido para todos tus momentos</span></div>
+          <div class="showcase-product showcase-small top"><img src="airpodspro2.png" alt="Auriculares AirPods Pro 2" onerror="this.style.display='none'"></div>
+          <div class="showcase-product showcase-small bottom"><img src="Combomatero.jpeg" alt="Combo matero" onerror="this.style.display='none'"></div>
+        </div>
+        <div class="showcase-foot"><img class="jere-photo" src="jere.jpeg" alt="Jere, atención personalizada" onerror="this.style.display='none'"><span>Atención personalizada</span><span class="showcase-dot"></span><span>Rosario y alrededores</span></div>
+      </div>
+    </div>
+    <div class="benefits">
+      <div class="benefit"><span class="benefit-icon">🚚</span><div><strong>ENVÍOS LOCALES</strong><small>Rosario y alrededores</small></div></div>
+      <div class="benefit"><span class="benefit-icon">💬</span><div><strong>ATENCIÓN POR WHATSAPP</strong><small>Consultá sin compromiso</small></div></div>
+      <div class="benefit"><span class="benefit-icon">🛍️</span><div><strong>VARIEDAD DE PRODUCTOS</strong><small>Encontrá tu próximo favorito</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="catalog" id="productos">
+<div class="container">
+  <div class="section-head">
+    <div><h2>Encontrá tu favorito<span style="color:var(--light)">.</span></h2><p>Elegí un producto y consultanos por WhatsApp.</p></div>
+    <input id="search" class="search" type="search" placeholder="🔎 Buscar producto..." aria-label="Buscar producto">
+  </div>
+  <div class="product-tools"><span class="catalog-meta" id="result-count">15 productos disponibles</span><select class="sort" id="sort" aria-label="Ordenar productos"><option value="default">Ordenar: recomendados</option><option value="price-asc">Precio: menor a mayor</option><option value="price-desc">Precio: mayor a menor</option><option value="name">Nombre: A a Z</option></select></div>
+  <div class="filters" id="filters">
+    <button class="filter active" data-category="todos">Todos</button>
+    <button class="filter" data-category="audio">Audio</button>
+    <button class="filter" data-category="termos">Mates y termos</button>
+    <button class="filter" data-category="vasos">Vasos y accesorios</button>
+    <button class="filter" data-category="otros">Otros</button>
+  </div>
+
+  <div class="products" id="products">
+    <article class="product" data-category="audio" data-name="airpods pro 2">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="product-label">MÁS ELEGIDOS</span><span class="emoji">🎧</span><img src="airpodspro2.png" alt="AirPods Pro 2" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>AirPods Pro 2</h3><p class="desc">Auriculares inalámbricos para acompañarte todos los días.</p><ul class="features"><li>Cancelación de ruido</li><li>Compatibles con iPhone y Android</li><li>Producto alternativo / réplica</li></ul><span class="price-hidden">$30.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="vasos" data-name="vaso cervecero tipo stanley · 475 ml">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="emoji">🍺</span><img src="vasocerveza.jpeg" alt="Vaso cervecero tipo Stanley · 475 ml" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>Vaso cervecero tipo Stanley · 475 ml</h3><p class="desc">El vaso ideal para compartir y disfrutar en casa.</p><ul class="features"><li>Capacidad de 475 ml</li><li>Destapador de metal incorporado</li><li>Varios colores disponibles</li></ul><span class="price-hidden">$17.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="audio" data-name="jbl charge 5">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="product-label">SONIDO POTENTE</span><span class="emoji">🔊</span><img src="JBLCharge5.jpeg" alt="JBL Charge 5" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>JBL Charge 5</h3><p class="desc">Sonido para darle ambiente a tus reuniones y momentos.</p><ul class="features"><li>Diseño portátil</li><li>Ideal para casa y reuniones</li><li>Una buena opción para regalar</li></ul><span class="price-hidden">$47.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="termos" data-name="combo matero · 1,2 l">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="product-label">COMBO</span><span class="emoji">🧉</span><img src="Combomatero.jpeg" alt="Combo matero · 1,2 L" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>Combo matero · 1,2 L</h3><p class="desc">Todo lo que necesitás para tus mates de todos los días.</p><ul class="features"><li>Termo de 1,2 litros</li><li>Mate y bombilla</li><li>Varios colores disponibles</li></ul><span class="price-hidden">$44.990</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="termos" data-name="termo tipo stanley · 1 l">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="emoji">🧉</span><img src="TermotipoStanley1L.jpeg" alt="Termo tipo Stanley · 1 L" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>Termo tipo Stanley · 1 L</h3><p class="desc">Tu compañero para llevar el mate a donde vayas.</p><ul class="features"><li>Capacidad de 1 litro</li><li>Pico cebador</li><li>Varios colores disponibles</li></ul><span class="price-hidden">$37.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="audio" data-name="auriculares jbl vincha">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="product-label">MUY BUSCADOS</span><span class="emoji">🎧</span><img src="JBLvincha.jfif" alt="Auriculares JBL vincha" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>Auriculares JBL vincha</h3><p class="desc">Comodidad y estilo para escuchar lo que te gusta.</p><ul class="features"><li>Diseño tipo vincha</li><li>Para música, videos y llamadas</li><li>Consultá colores disponibles</li></ul><span class="price-hidden">$29.990</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="vasos" data-name="vaso flip">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="emoji">🥤</span><img src="vasoflipstanley.png" alt="Vaso Flip" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>Vaso Flip</h3><p class="desc">Práctico para acompañarte en tus actividades cotidianas.</p><ul class="features"><li>Varios colores disponibles</li><li>Cómodo para todos los días</li><li>Ideal para regalar</li></ul><span class="price-hidden">$25.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="audio" data-name="redmi airdots">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="emoji">🎶</span><img src="RedmiAirDotsPro.png" alt="Redmi Airdots" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>Redmi Airdots</h3><p class="desc">Auriculares inalámbricos prácticos para todos los días.</p><ul class="features"><li>Conexión Bluetooth</li><li>Para música, videos y llamadas</li><li>Diseño compacto</li></ul><span class="price-hidden">$18.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="termos" data-name="termo tipo stanley · 1,2 l">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="emoji">🧉</span><img src="TermoStanley1,2L.png" alt="Termo tipo Stanley · 1,2 L" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>Termo tipo Stanley · 1,2 L</h3><p class="desc">Para disfrutar de tus bebidas favoritas por más tiempo.</p><ul class="features"><li>Capacidad de 1,2 litros</li><li>Varios colores disponibles</li><li>Consultá disponibilidad</li></ul><span class="price-hidden">$34.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="vasos" data-name="vaso cafetero tipo stanley · 500 ml">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="emoji">☕</span><img src="Vasocafetero500ml.png" alt="Vaso cafetero tipo Stanley · 500 ml" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>Vaso cafetero tipo Stanley · 500 ml</h3><p class="desc">Para disfrutar tu bebida favorita durante el día.</p><ul class="features"><li>Capacidad de 500 ml</li><li>Sensor de temperatura</li><li>Varios colores disponibles</li></ul><span class="price-hidden">$22.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="audio" data-name="airpods max">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="product-label">DISEÑO PREMIUM</span><span class="emoji">🎧</span><img src="AirpodsMax.png" alt="AirPods Max" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>AirPods Max</h3><p class="desc">Auriculares tipo vincha para música y entretenimiento.</p><ul class="features"><li>Diseño tipo vincha</li><li>Varios colores disponibles</li><li>Producto alternativo / réplica</li></ul><span class="price-hidden">$34.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="audio" data-name="jbl go 4 pro">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="product-label">COMPACTO</span><span class="emoji">🔊</span><img src="JBLgo4pro.png" alt="JBL Go 4 Pro" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>JBL Go 4 Pro</h3><p class="desc">Música donde quieras con un formato compacto.</p><ul class="features"><li>Diseño portátil</li><li>Para viajes y uso diario</li><li>Consultá colores disponibles</li></ul><span class="price-hidden">$29.990</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="otros" data-name="body splash victoria’s secret original">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="product-label">ORIGINAL</span><span class="emoji">🌷</span><img src="BODYSPLASHVICTORIA’SSECRET.png" alt="Body Splash Victoria’s Secret original" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>Body Splash Victoria’s Secret original</h3><p class="desc">Una fragancia para sumar un toque especial a tu rutina.</p><ul class="features"><li>Producto original</li><li>Consultá fragancias disponibles</li><li>Precio por unidad</li></ul><span class="price-hidden">$36.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="vasos" data-name="vaso quencher">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="emoji">🥤</span><img src="Vasoquencher.jfif" alt="Vaso Quencher" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>Vaso Quencher</h3><p class="desc">Un vaso práctico y canchero para acompañarte todos los días.</p><ul class="features"><li>Varios colores disponibles</li><li>Precio por unidad</li><li>Consultá disponibilidad</li></ul><span class="price-hidden">$25.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+    <article class="product" data-category="otros" data-name="smartwatch · 7 mallas">
+      <div class="product-image" role="button" tabindex="0" aria-label="Ampliar foto del producto"><span class="product-label">7 ESTILOS</span><span class="emoji">⌚</span><img src="Smartwatch7estilos.png" alt="Smartwatch · 7 mallas" loading="lazy" onerror="this.style.display='none'"></div>
+      <div class="product-info"><button class="favorite" type="button" aria-pressed="false" title="Guardar favorito">♡ Guardar</button><h3>Smartwatch · 7 mallas</h3><p class="desc">Un accesorio versátil para combinar con distintos looks.</p><ul class="features"><li>Incluye 7 mallas</li><li>Precio por unidad</li><li>Consultá disponibilidad</li></ul><span class="price-hidden">$34.999</span><button class="btn add-cart" type="button">Agregar al carrito</button><a class="btn product-btn" href="#">Consultar por WhatsApp</a></div>
+    </article>
+  </div>
+  <p class="empty" id="empty">No encontramos productos con esa búsqueda. Probá con otra palabra.</p>
+  <p class="note">Precios publicados por unidad, salvo que se indique otra cosa. Consultá disponibilidad, colores y opciones de entrega antes de confirmar tu pedido.</p>
+</div>
+</section>
+
+<section class="trust" id="beneficios">
+<div class="container trust-grid">
+  <div class="trust-item"><span>📍</span><h3>Rosario y alrededores</h3><p>Consultá las opciones de entrega disponibles en tu zona.</p></div>
+  <div class="trust-item"><span>💬</span><h3>Atención directa</h3><p>Escribinos y te respondemos tus dudas por WhatsApp.</p></div>
+  <div class="trust-item"><span>🤝</span><h3>Compra con confianza</h3><p>Atención directa de Jeremías Ramos Rimoldi.</p></div>
+</div>
+</section>
+
+<section class="about" id="quienes-somos">
+  <div class="container about-grid">
+    <div class="about-card">
+      <img class="about-avatar" src="jere.jpeg" alt="Foto de Jeremías Ramos Rimoldi">
+      <h3>Jeremías Ramos Rimoldi</h3>
+      <p>CREADOR DE NOVA MIX</p>
+      <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+        <a href="https://www.instagram.com/novamix.ar/" target="_blank" rel="noopener noreferrer" class="btn">Instagram @novamix.ar</a>
+      </div>
+    </div>
+    <div class="about-copy">
+      <span class="tag">CONOCÉ NUESTRA HISTORIA</span>
+      <h2>¿Quiénes <span style="color:var(--light)">somos?</span></h2>
+      <p>¡Hola! Soy <strong>Jeremías Ramos Rimoldi</strong>, creador de <strong>NOVA MIX</strong>. Este emprendimiento personal nació con muchas ganas de crecer, ofrecer buenos productos y hacer que comprar sea una experiencia fácil y agradable.</p>
+      <p>Busco acercarte <strong>productos a buenos precios</strong>, variedad y novedades para distintos gustos. Quiero que puedas consultar con tranquilidad, recibir una atención personalizada y elegir lo que realmente estás buscando.</p>
+      <div class="about-points">
+        <div class="about-point"><strong>✨ Variedad y novedades</strong><span>Opciones para descubrir algo nuevo.</span></div>
+        <div class="about-point"><strong>🤝 Atención personal</strong><span>Estoy detrás de cada consulta.</span></div>
+        <div class="about-point"><strong>📦 Compra sencilla</strong><span>Coordinamos la entrega por WhatsApp.</span></div>
+        <div class="about-point"><strong>📍 Rosario y alrededores</strong><span>Consultá las opciones de entrega.</span></div>
+      </div>
+      <p>Esto recién empieza. Con esfuerzo, dedicación y la confianza de cada cliente, quiero hacer crecer NOVA MIX día a día y llegar cada vez más lejos.</p>
+      <div class="about-signoff">NOVA MIX — Tu estilo, tus productos, tu elección. 💜</div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="preguntas-frecuentes">
+  <div class="container">
+    <div class="faq-intro"><span class="tag">AYUDA Y CONSULTAS</span><h2>Preguntas <span style="color:var(--light)">frecuentes</span></h2><p>Lo importante antes de hacer tu pedido, explicado de forma simple.</p></div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>¿Cómo hago un pedido?</summary><div class="faq-answer">Elegí los productos que te interesan, agregalos al carrito y tocá “Enviar pedido por WhatsApp”. Se abrirá una conversación con el detalle de tu consulta para que la revises y la envíes.</div></details>
+      <details class="faq-item"><summary>¿El pedido se confirma automáticamente?</summary><div class="faq-answer">No. El carrito prepara el mensaje, pero el pedido queda sujeto a confirmación por WhatsApp. Te responderemos para confirmar disponibilidad, colores y detalles de entrega.</div></details>
+      <details class="faq-item"><summary>¿Hacen envíos?</summary><div class="faq-answer">Realizamos entregas en Rosario y alrededores. Escribinos para consultar las opciones disponibles según tu zona.</div></details>
+      <details class="faq-item"><summary>¿Puedo pagar al recibir?</summary><div class="faq-answer">Podés consultar la opción de pago al recibir en la puerta de tu casa. La modalidad y la entrega se coordinan por WhatsApp antes de confirmar.</div></details>
+      <details class="faq-item"><summary>¿Puedo consultar colores o disponibilidad?</summary><div class="faq-answer">Sí. Los colores, modelos y unidades disponibles pueden variar. Mandanos tu consulta y te confirmamos qué opciones hay.</div></details>
+      <details class="faq-item"><summary>¿Los precios son por unidad?</summary><div class="faq-answer">Los precios publicados son por unidad, salvo que la descripción indique otra cosa. Antes de cerrar la compra confirmamos el importe final.</div></details>
+      <details class="faq-item"><summary>¿Los AirPods son originales?</summary><div class="faq-answer">Los AirPods Pro 2 y AirPods Max publicados en esta página se identifican como productos alternativos / réplicas. Consultá cualquier duda antes de comprar.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+<div class="container">
+  <div class="contact-box">
+    <span class="tag">¿TENÉS UNA CONSULTA?</span>
+    <h2>Hablemos por <span style="color:var(--light)">WhatsApp</span></h2>
+    <p>Soy Jeremías Ramos Rimoldi, de NOVA MIX. Escribime directamente para consultar disponibilidad, coordinar la entrega y resolver tus dudas.</p>
+    <a class="btn" id="general-whatsapp" href="#">📲 Hablar con Jeremías</a><p style="margin-top:18px;font-size:13px">Instagram de la marca: <a href="https://www.instagram.com/novamix.ar/" target="_blank" rel="noopener noreferrer" style="color:var(--light);font-weight:bold">@novamix.ar</a><br>Instagram personal: <a href="https://www.instagram.com/jeree.r_/" target="_blank" rel="noopener noreferrer" style="color:var(--light);font-weight:bold">@jeree.r_</a></p>
+  </div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container footer-content">
+  <div><div class="footer-brand">NOVA <span>MIX</span> 🛍️</div><div>Tu compra, más fácil.</div></div>
+  <div>Jeremías Ramos Rimoldi · Rosario y alrededores<br><a href="https://www.instagram.com/novamix.ar/" target="_blank" rel="noopener noreferrer">Instagram @novamix.ar</a> · <a href="https://www.instagram.com/jeree.r_/" target="_blank" rel="noopener noreferrer">@jeree.r_</a></div>
+  <div>© <span id="year"></span> NOVA MIX</div>
+</div>
+</footer>
+
+<a class="whatsapp" id="floating-whatsapp" href="#" aria-label="Contactar a NOVA MIX por WhatsApp">☏</a>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto del producto"><button class="lightbox-close" id="lightbox-close" aria-label="Cerrar foto">×</button><img id="lightbox-img" alt="Foto ampliada del producto"><p class="lightbox-caption" id="lightbox-caption"></p></div>
+
+<div class="cart-overlay" id="cart-overlay" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+  <div class="cart-panel">
+    <div class="cart-head"><div><span class="tag">TU SELECCIÓN</span><h2 id="cart-title">Tu carrito</h2></div><button class="cart-close" id="close-cart" type="button" aria-label="Cerrar carrito">×</button></div>
+    <div id="cart-items"><div class="cart-empty">Todavía no agregaste productos. Volvé al catálogo y elegí lo que te interesa.</div></div>
+    <div class="cart-total"><span>Total estimado</span><span id="cart-total">$0</span></div>
+    <p class="cart-help">El total es orientativo. Disponibilidad, colores y entrega se confirman por WhatsApp.</p>
+    <button class="btn" id="send-cart" type="button" disabled>Enviar pedido por WhatsApp</button>
+    <button class="btn btn-outline" id="clear-cart" type="button" disabled>Vaciar carrito</button>
+  </div>
+</div>
+
+<script>
+const WHATSAPP = "5493413477351";
+const products = [...document.querySelectorAll(".product")];
+const baseMessage = "Hola Jeremías, soy cliente de NOVA MIX. Quiero consultar por sus productos y disponibilidad.";
+function whatsappLink(message){
+  return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(message);
+}
+document.querySelectorAll(".product").forEach(product => {
+  const name = product.querySelector("h3").textContent.trim();
+  const price = product.querySelector(".price-hidden").textContent.trim();
+  const message = `Hola Jeremías, soy cliente de NOVA MIX. Me interesa ${name} (${price}). ¿Tenés disponibilidad?`;
+  const link = product.querySelector(".product-btn");
+  link.href = whatsappLink(message);
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.addEventListener("click", event => {
+    // A real anchor URL is retained as a fallback for browsers that block popups.
+    link.href = whatsappLink(message);
+  });
+});
+
+// Carrito de consulta: prepara un único mensaje, sin emojis.
+const cart = new Map();
+const cartOverlay = document.getElementById('cart-overlay');
+const cartItems = document.getElementById('cart-items');
+const cartCount = document.getElementById('cart-count');
+const cartTotal = document.getElementById('cart-total');
+const sendCart = document.getElementById('send-cart');
+const clearCart = document.getElementById('clear-cart');
+const moneyNumber = value => Number(value.replace(/[^0-9]/g, ''));
+const formatMoney = value => '$' + Math.round(value).toLocaleString('es-AR');
+function renderCart(){
+  const entries = [...cart.values()];
+  const count = entries.reduce((sum,item)=>sum+item.qty,0);
+  const total = entries.reduce((sum,item)=>sum+item.price*item.qty,0);
+  cartCount.textContent = count;
+  cartTotal.textContent = formatMoney(total);
+  sendCart.disabled = entries.length === 0;
+  clearCart.disabled = entries.length === 0;
+  if(!entries.length){cartItems.innerHTML='<div class="cart-empty">Todavía no agregaste productos. Volvé al catálogo y elegí lo que te interesa.</div>';return;}
+  cartItems.innerHTML = entries.map(item => `<div class="cart-item"><div><h3>${item.name}</h3><p>${formatMoney(item.price)} por unidad</p><div class="cart-controls"><button class="qty-btn" data-action="minus" data-id="${item.id}" aria-label="Restar una unidad">−</button><span>${item.qty}</span><button class="qty-btn" data-action="plus" data-id="${item.id}" aria-label="Sumar una unidad">+</button><button class="remove-item" data-action="remove" data-id="${item.id}">Quitar</button></div></div><strong>${formatMoney(item.price*item.qty)}</strong></div>`).join('');
+}
+products.forEach((product,index)=>{
+  const addButton = product.querySelector('.add-cart');
+  addButton.addEventListener('click',()=>{
+    const id = String(index);
+    const name = product.querySelector('h3').textContent.trim();
+    const priceText = product.querySelector('.price-hidden').textContent.trim();
+    const existing = cart.get(id);
+    if(existing) existing.qty += 1;
+    else cart.set(id,{id,name,price:moneyNumber(priceText),qty:1});
+    renderCart();
+    addButton.textContent = 'Agregado al carrito';
+    addButton.setAttribute('aria-label', name + ' agregado al carrito');
+    setTimeout(()=>{addButton.textContent='Agregar al carrito';},1100);
+  });
+});
+document.getElementById('open-cart').addEventListener('click',()=>{cartOverlay.classList.add('open');document.body.style.overflow='hidden';});
+function closeCart(){cartOverlay.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('close-cart').addEventListener('click',closeCart);
+cartOverlay.addEventListener('click',event=>{if(event.target===cartOverlay)closeCart();});
+cartItems.addEventListener('click',event=>{
+  const button=event.target.closest('button[data-action]');if(!button)return;
+  const item=cart.get(button.dataset.id);if(!item)return;
+  if(button.dataset.action==='plus')item.qty++;
+  if(button.dataset.action==='minus'){item.qty--;if(item.qty<=0)cart.delete(button.dataset.id);}
+  if(button.dataset.action==='remove')cart.delete(button.dataset.id);
+  renderCart();
+});
+clearCart.addEventListener('click',()=>{cart.clear();renderCart();});
+sendCart.addEventListener('click',()=>{
+  const entries=[...cart.values()];if(!entries.length)return;
+  const total=entries.reduce((sum,item)=>sum+item.price*item.qty,0);
+  const lines=entries.map(item=>`- ${item.name} x ${item.qty}: ${formatMoney(item.price*item.qty)}`);
+  const message=['Hola Jeremías, quiero consultar por este pedido de NOVA MIX.','',...lines,'',`Total estimado: ${formatMoney(total)}`,'Quisiera confirmar disponibilidad, colores y opciones de entrega.'].join('\n');
+  const orderLink = document.createElement('a');
+  orderLink.href = whatsappLink(message);
+  orderLink.target = '_blank';
+  orderLink.rel = 'noopener noreferrer';
+  orderLink.style.display = 'none';
+  document.body.appendChild(orderLink);
+  orderLink.click();
+  orderLink.remove();
+});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&cartOverlay.classList.contains('open'))closeCart();});
+renderCart();
+
+const generalWhatsApp = document.getElementById("general-whatsapp");
+generalWhatsApp.href = whatsappLink(baseMessage);
+generalWhatsApp.target = "_blank";
+generalWhatsApp.rel = "noopener noreferrer";
+const floatingWhatsApp = document.getElementById("floating-whatsapp");
+floatingWhatsApp.href = whatsappLink(baseMessage);
+floatingWhatsApp.target = "_blank";
+floatingWhatsApp.rel = "noopener noreferrer";
+document.getElementById("year").textContent = new Date().getFullYear();
+document.title = "NOVA MIX | Tecnología, accesorios y más";
+
+let selectedCategory = "todos";
+const search = document.getElementById("search");
+const empty = document.getElementById("empty");
+const resultCount = document.getElementById("result-count");
+const sort = document.getElementById("sort");
+const productGrid = document.getElementById("products");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const lightboxCaption = document.getElementById("lightbox-caption");
+
+// Favoritos: se conservan durante la sesión abierta.
+products.forEach(product => {
+  const button = product.querySelector('.favorite');
+  button.addEventListener('click', () => {
+    const active = button.classList.toggle('active');
+    button.setAttribute('aria-pressed', String(active));
+    button.textContent = active ? '♥ Guardado' : '♡ Guardar';
+  });
+  const photo = product.querySelector('.product-image');
+  const img = photo.querySelector('img');
+  const openPhoto = () => {
+    if (!img || img.style.display === 'none' || !img.complete || img.naturalWidth === 0) return;
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightboxCaption.textContent = product.querySelector('h3').textContent;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  photo.addEventListener('click', openPhoto);
+  photo.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openPhoto(); } });
+  if (img) img.addEventListener('load', () => { photo.classList.add('has-photo'); });
+});
+function closeLightbox(){ lightbox.classList.remove('open'); document.body.style.overflow = ''; lightboxImg.src = ''; }
+document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', event => { if (event.key === 'Escape') closeLightbox(); });
+sort.addEventListener('change', () => {
+  const visibleOrder = [...products];
+  const priceOf = product => Number((product.querySelector('.price-hidden').textContent.match(/[0-9.]+/)[0]).replaceAll('.', ''));
+  if (sort.value === 'price-asc') visibleOrder.sort((a,b)=>priceOf(a)-priceOf(b));
+  else if (sort.value === 'price-desc') visibleOrder.sort((a,b)=>priceOf(b)-priceOf(a));
+  else if (sort.value === 'name') visibleOrder.sort((a,b)=>a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent,'es'));
+  else visibleOrder.sort((a,b)=>products.indexOf(a)-products.indexOf(b));
+  visibleOrder.forEach(product=>productGrid.appendChild(product));
+  filterProducts();
+});
+
+function filterProducts(){
+  const term = search.value.trim().toLowerCase();
+  let visible = 0;
+  products.forEach(product => {
+    const categoryMatch = selectedCategory === "todos" || product.dataset.category === selectedCategory;
+    const textMatch = (product.dataset.name + " " + product.innerText).toLowerCase().includes(term);
+    const show = categoryMatch && textMatch;
+    product.style.display = show ? "" : "none";
+    if(show) visible++;
+  });
+  empty.style.display = visible ? "none" : "block";
+  resultCount.textContent = `${visible} producto${visible === 1 ? "" : "s"} encontrado${visible === 1 ? "" : "s"}`;
+}
+document.querySelectorAll(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
+    selectedCategory = button.dataset.category;
+    filterProducts();
+  });
+});
+search.addEventListener("input", filterProducts);
+</script>
+</body>
+</html>
